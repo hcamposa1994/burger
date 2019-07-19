@@ -17,7 +17,7 @@ $(function() {
 
         var name = $("#burger-name").val().trim();
         if(name.length > 0) {
-            $.ajax("/api/burgers/", {
+            $.ajax("/api/burgers", {
                 type: "POST",
                 data: {
                     burger_name: name
