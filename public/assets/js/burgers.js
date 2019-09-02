@@ -6,7 +6,7 @@ $(function() {
             type: "PUT"
         }).then(
             function() {
-                console.log("Burger eaten with id: " + id);
+                // console.log("Burger eaten with id: " + id);
                 location.reload();
             }
         );
@@ -24,7 +24,7 @@ $(function() {
                 }
             }).then(
                 function() {
-                    console.log("Added "+ name + " to burger list!");
+                    // console.log("Added "+ name + " to burger list!");
                     location.reload();
                 }
             );

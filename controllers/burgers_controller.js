@@ -1,31 +1,27 @@
 const express = require("express");
+const router = express.Router();
 const burger = require("../models/burger.js");
 
-const router = express.Router();
-
 router.get("/", (req, res) => {
-    burger.selectAll( data => {
-        var hbsObject = {
-            burgers: data
-        };
-        console.log(hbsObject);
-        res.render("index", hbsObject);
+    burger.selectAll( burger_data => {
+        // console.log(burger_data);
+        res.render("index", {burger_data});
     });
 });
 
-router.post("/api/burgers", (req, res) => {
-    burger.insertOne(["name"], [req.body.burger_name], () => {
-        console.log("adding burger: " + req.body.burger_name);
-        res.status(200).end();
+router.post("/burgers", (req, res) => {
+    burger.insertOne(req.body.burger_name, () => {
+        // console.log("adding burger: " + req.body.burger_name);
+        res.redirect("/");
     });
 });
 
-router.put("/api/burgers/:id", (req, res) => {
+router.put("/burgers/:id", (req, res) => {
     burger.updateOne(req.params.id, result => {
         if (result.changedRows === 0) {
             return res.status(404).end();
         }
-        res.status(200).end();
+        res.redirect("/");
     });
 });
 

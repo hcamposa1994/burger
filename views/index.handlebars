@@ -1,4 +1,46 @@
 <div class="container">
+    <div class="row">
+        <div class="col-12 text-center" id="top">
+            <h1>Eat the burger</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 text-center">
+            {{#each burger_data}}
+                {{#unless this.devoured}}
+                    <div class="col-xs-9 text-center">
+                        <pre>{{this.id}}. {{this.burger_name}}</pre>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                        <form method="POST" action="/burgers/{{this.id}}?_method=PUT">
+                            <button type="submit" class="btn btn-primary">Devour it</button>
+                        </form>
+                    </div>
+                {{/unless}}
+            {{/each}}
+        </div>
+        <div class="col-6 text-center">
+            {{#each burger_data}}
+                {{#if this.devoured}}
+                    <div class="eaten">
+                        <pre>{{this.id}}. {{this.burger_name}}</pre>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <form action="/burgers" method="POST">
+                <input type="text" id="name" name="burger_name" 
+                placeholder="Input your burger here" value="">
+                <button type="submit" class="addBurger">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{!-- <div class="container">
     <div class="text-center">
         <h1>Eat the Burger!</h1>
     </div>
@@ -38,4 +80,4 @@
             <button type="submit">Add</button>
         </form>
     </div>
-</div>
+</div> --}}

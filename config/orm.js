@@ -1,28 +1,26 @@
-var connection = require("../config/connection.js");
+const connection = require("../config/connection.js");
 
-var orm = {
+const orm = {
     
-    selectAll: function(cb) {
-        connection.query('SELECT * FROM burgers', function (err, result) {
+    selectAll: (table, cb) => {
+        connection.query('SELECT * FROM ' + table, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
 
-    insertOne: function(name, cb) {
-        connection.query("INSERT INTO burgers SET ?", {
-            burger_name: name
-        }, function(err, result) {
+    insertOne: (table, val, cb) => {
+        connection.query("INSERT INTO " + table + " (burger_name) VALUES ('"+ val +"')", (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
 
-    updateOne: function(burger_id, cb) {
-        connection.query("UPDATE burgers SET ? Where ?", [
+    updateOne: (table, condition, cb) => {
+        connection.query("UPDATE " + table + " SET ? Where ?", [
             {devoured: true},
-            {id : burger_id}
-        ], function(err, result) {
+            {id : condition}
+        ], (err, result) => {
             if (err) throw err;
             cb(result);
         });
