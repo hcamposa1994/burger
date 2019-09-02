@@ -1,4 +1,4 @@
-# # Eat the Burger
+# Eat the Burger
 
 #### What is this app doing and why?
 The goal of this app is by using Node, Express, MySQL, and various ourer node packages, I created a simple app where a user can add their burger onto a menu, and with a click of a button indicated if that burger has been eaten yet or not.
